@@ -4,7 +4,8 @@
 
 namespace imglib
 {
-    void show_rgb(std::uint8_t* pixels, std::size_t width, std::size_t height);
+    void show(std::uint8_t* pixels, std::size_t width, std::size_t height,
+              int format);
 }
 
 #include "win.hxx"

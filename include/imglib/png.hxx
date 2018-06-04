@@ -1,6 +1,7 @@
 #pragma once
 
 #include "png.hh"
+#include "format.hh"
 #include <cstdio>
 #include <cstring>
 #include <stdexcept>
@@ -67,8 +68,9 @@ namespace imglib
         return pixs;
     }
 
-    inline void png_rgb_save(const std::string& path, std::uint8_t* data,
-                             std::size_t width, std::size_t height)
+    inline void png_save(const std::string& path, std::uint8_t* data,
+                         std::size_t width, std::size_t height,
+                         int format)
     {
         FILE* f = fopen(path.c_str(), "wb");
         if (!f)
@@ -88,13 +90,24 @@ namespace imglib
 
         png_init_io(png_ptr, f);
 
+        std::size_t channels = 0;
+        int color_type = 0;
+
+        if (format == FORMAT_RGB)
+        {
+            channels = 3;
+            color_type = PNG_COLOR_TYPE_RGB;
+        }
+        else
+            throw std::runtime_error {"Invalid format"};
+
         png_set_IHDR(png_ptr, info_ptr, width, height,
-                     8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE,
+                     8, color_type, PNG_INTERLACE_NONE,
                      PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
         png_write_info(png_ptr, info_ptr);
 
-        std::size_t rowstride = 3 * width;
+        std::size_t rowstride = channels * width;
         for (std::size_t y = 0; y < height; ++y)
             png_write_row(png_ptr, data + y * rowstride);
 

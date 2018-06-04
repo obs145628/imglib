@@ -5,9 +5,10 @@
 namespace imglib
 {
 
-    inline void show_rgb(std::uint8_t* pixels, std::size_t width, std::size_t height)
+    inline void show(std::uint8_t* pixels, std::size_t width, std::size_t height,
+                     int format)
     {
-        SDLEnv::instance().show_img_rgb(pixels, width, height);
+        SDLEnv::instance().show_img(pixels, width, height, format);
     }
     
 }

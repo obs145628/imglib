@@ -1,10 +1,10 @@
 # imglib
 
-C++ header-only library to display images, and read/write image files (PNG)
+C++ header-only library to display images, and read/write image files (PNG / JPG)
 
 ## dependencies
 
-Programs must be linked with SDL2 and libpng
+Programs must be linked with SDL2, libpng and libjpeg
 
 ## examples
 

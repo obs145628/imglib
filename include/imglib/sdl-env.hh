@@ -24,8 +24,9 @@ namespace imglib
 
         void size_set(int width, int height);
 
-        void show_img_rgb(std::uint8_t* pixels,
-                          std::size_t width, std::size_t height);
+        void show_img(std::uint8_t* pixels,
+                      std::size_t width, std::size_t height,
+                      int format);
 
         SDL_Window* win;
         SDL_Surface* surface;

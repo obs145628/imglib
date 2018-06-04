@@ -1,6 +1,6 @@
 CXX=g++
 CXXFLAGS=-std=c++17 -Wall -Wextra -Werror -pedantic -O0 -g3 -I../include/
-LDFLAGS=-lSDL2 -lpng
+LDFLAGS=-lSDL2 -lpng -ljpeg
 
 OBJS=main.o
 BIN=app.out
